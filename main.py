@@ -17,20 +17,27 @@ def curculate_BMI():
     if height == "" or weight == "" :
         result_label.config(text="Lütfen Kilonuzu ve Boyunuzu Giriniz ")
     else:
-        bmi = float(weight) /  (float(height) / 100 )  ** 2
-        print(bmi)
+        try:
+            bmi = float(weight) / (float(height) / 100) ** 2
+            result_string = write_result(bmi)
+            result_label.config(text=result_string)
+        except:
+            result_label.config(text="Lütfen Geçerli rakam Giriniz")
 
 
+def write_result(bmi):
+    result_string  = f"BMI DEĞERİNİZ :  {bmi}. Siz "
     if 10<=bmi<18.5:
-        print("Zayıfsınız")
+        result_string += "Zayıfsınız"
     elif 18.5<=bmi<25:
-        print("Sağlıklı")
+        result_string += "Sağlıklısınız"
     elif 25<=bmi<30:
-        print("Kilolusunuz")
+        result_string += "Kilolusunuz"
     elif 30<=bmi<40:
-        print("Şişman")
+        result_string += "Şişmansınız"
     elif 40<=bmi<=50:
-        print("Aşırı Şişman")
+        result_string += "Aşırı Şişmansınız"
+    return  result_string
 
 
 
@@ -66,10 +73,12 @@ my_label2.pack()
 height_entry = Entry(bg="grey" )
 height_entry.pack()
 
-
+font2 = ("Arial",10,"bold")
 #result label
-result_label = Label(font=font,bg="white",fg="black")
+result_label = Label(font=font,bg="white",fg="black",)
+result_label.config(font=font2)
 result_label.place(x=-15 , y = 210)
+
 
 
 
